@@ -1,30 +1,75 @@
+// Useful aliases to add to bash_aliases file
+// ~/.bash_aliases
+
+alias cp='cp -i'
+alias rm='rm -i'
+alias cls='clear'
+alias ls='\ls -ltr'
+alias ll='\ls -lh'
+alias dir='\ls --human-readable --size -1 -S --classify'
+alias df="df -Tha --total"
+alias du="du -ach | sort -h"
+alias free="free -mth"
+alias ps="ps auxf"
+alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
+alias mkdir="mkdir -pv"
+
+// Creating cscope and codequery database
+// NOTE: replace project.db with project name
+
+find . -name "*.[chxsS]" -o -name "*.mk" > cscope.files
+cscope -c -q -R -b -k -i cscope.files
+ctags --fields=+i -n -L ./cscope.files
+cqmakedb -s ./project.db -c ./cscope.out -t ./tags -p
+codequery
+
+
 // Compiler installs for Ubuntu 20.04 LTS
 // compiler/toolchains
 
-    sudo apt -y update
-    sudo apt -y upgrade
-
-    sudo apt -y install software-properties-common build-essential checkinstall
-    sudo apt -y install wget curl git libssl-dev apt-transport-https ca-certificates
-    sudo apt -y install libavahi-compat-libdnssd-dev
-    sudo apt -y install unace unrar zip unzip p7zip-full p7zip-rar sharutils rar uudeview mpack arj cabextract file-roller
-    sudo apt -y install subversion rabbitvcs-nautilus git curl vim network-manager-openvpn
-    sudo apt -y install gparted gnome-disk-utility usb-creator-gtk traceroute cloc whois mssh
-    sudo apt -y install inotify-tools openssh-server sqlite3 etckeeper stress ntp
-    sudo apt -y install exfat-fuse exfat-utils e2fsprogs mtools dosfstools hfsutils hfsprogs jfsutils util-linux
-    sudo apt -y install lvm2 nilfs-tools ntfs-3g reiser4progs reiserfsprogs xfsprogs attr quota f2fs-tools sshfs go-mtpfs jmtpfs
-    sudo apt -y install htop meld guake password-gorilla keepassx retext terminator vim geany ghex myrepos baobab
-    sudo apt -y install python3-pip python-numpy libgphoto2-dev libeigen3-dev libhdf5-dev doxygen python3-dev python3-pip
-    sudo apt -y install erlang elixir git-ftp npm php vim vim-gtk3 emacs python3-testresources lib32z1
-    sudo apt -y install mininet net-tools x264 libx264-dev build-essential checkinstall cmake pkg-config yasm htop
-    sudo apt -y install git gfortran libjpeg8-dev libpng-dev libgoogle-glog-dev libgflags-dev lm-sensors tree
-    sudo apt -y install software-properties-common libtiff-dev lib32z1 tasksel openconnect libpixman-1-dev
-    sudo apt -y install libavcodec-dev libavformat-dev libswscale-dev libdc1394-22-dev python3-cracklib vpnc
-    sudo apt -y install libxine2-dev libv4l-dev libprotobuf-dev protobuf-compiler libcrack2 cifs-utils tkcvs
-    sudo apt -y install libatlas-base-dev libfaac-dev libmp3lame-dev libtheora-dev 
-    sudo apt -y install libvorbis-dev libxvidcore-dev x264 v4l-utils openssl python-openssl git-core 
-    sudo apt -y install libopencore-amrnb-dev libopencore-amrwb-dev libavresample-dev libnss3-tools heimdal-clients
-    sudo apt -y install gawk wget git-core diffstat unzip texinfo gcc-multilib chrpath socat libsdl1.2-dev xterm
+sudo apt -y update
+sudo apt -y upgrade
+    
+sudo apt -y install xterm build-essential tree curl git rar unrar p7zip-full
+sudo apt -y install gparted kpartx libpixman-1-dev libglib2.0-dev vpnc
+sudo apt -y install tree nmap checkinstall software-properties-common tree
+sudo apt -y install ca-certificates vim subversion util-linux attr quota
+sudo apt -y install unace sharutils uudeview mpack arj cabextract file-roller
+sudo apt -y install traceroute cloc whois mssh geany ghex myrepos baobab
+sudo apt -y install inotify-tools openssh-server sqlite3 etckeeper stress ntp
+sudo apt -y install exfat-utils mtools dosfstools hfsutils hfsprogs jfsutils
+sudo apt -y install htop meld password-gorilla keepassx retext terminator
+sudo apt -y install python3-pip python3-numpy doxygen python3-dev gfortran
+sudo apt -y install erlang elixir npm emacs python3-testresources
+sudo apt -y install mininet net-tools x264 cmake pkg-config yasm gawk
+sudo apt -y install software-properties-common tasksel openconnect swig
+sudo apt -y install diffstat texinfo chrpath socat python3-openssl
+sudo apt -y install openjdk-16-jdk openjdk-16-jre lm-sensors bison flex
+sudo apt -y install git-review cscope codequery
+    
+    
+[OLD]
+sudo apt -y install software-properties-common build-essential checkinstall
+sudo apt -y install wget curl git libssl-dev apt-transport-https ca-certificates
+sudo apt -y install libavahi-compat-libdnssd-dev
+sudo apt -y install unace unrar zip unzip p7zip-full p7zip-rar sharutils rar uudeview mpack arj cabextract file-roller
+sudo apt -y install subversion rabbitvcs-nautilus git curl vim network-manager-openvpn
+sudo apt -y install gparted gnome-disk-utility usb-creator-gtk traceroute cloc whois mssh
+sudo apt -y install inotify-tools openssh-server sqlite3 etckeeper stress ntp
+sudo apt -y install exfat-fuse exfat-utils e2fsprogs mtools dosfstools hfsutils hfsprogs jfsutils util-linux
+sudo apt -y install lvm2 nilfs-tools ntfs-3g reiser4progs reiserfsprogs xfsprogs attr quota f2fs-tools sshfs go-mtpfs jmtpfs
+sudo apt -y install htop meld guake password-gorilla keepassx retext terminator vim geany ghex myrepos baobab
+sudo apt -y install python3-pip python-numpy libgphoto2-dev libeigen3-dev libhdf5-dev doxygen python3-dev python3-pip
+sudo apt -y install erlang elixir git-ftp npm php vim vim-gtk3 emacs python3-testresources lib32z1
+sudo apt -y install mininet net-tools x264 libx264-dev build-essential checkinstall cmake pkg-config yasm htop
+sudo apt -y install git gfortran libjpeg8-dev libpng-dev libgoogle-glog-dev libgflags-dev lm-sensors tree
+sudo apt -y install software-properties-common libtiff-dev lib32z1 tasksel openconnect libpixman-1-dev
+sudo apt -y install libavcodec-dev libavformat-dev libswscale-dev libdc1394-22-dev python3-cracklib vpnc
+sudo apt -y install libxine2-dev libv4l-dev libprotobuf-dev protobuf-compiler libcrack2 cifs-utils tkcvs
+sudo apt -y install libatlas-base-dev libfaac-dev libmp3lame-dev libtheora-dev 
+sudo apt -y install libvorbis-dev libxvidcore-dev x264 v4l-utils openssl python-openssl git-core 
+sudo apt -y install libopencore-amrnb-dev libopencore-amrwb-dev libavresample-dev libnss3-tools heimdal-clients
+sudo apt -y install gawk wget git-core diffstat unzip texinfo gcc-multilib chrpath socat libsdl1.2-dev xterm
 sudo apt -y install make xsltproc docbook-utils fop dblatex xmlto build-essential libsdl2-dev smbclient
 sudo apt -y install autoconf automake autotools-dev curl libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison swig flex texinfo gperf libtool patchutils bc zlib1g-dev libexpat-dev git
 
