@@ -46,6 +46,15 @@ sudo apt -y install software-properties-common tasksel openconnect swig
 sudo apt -y install diffstat texinfo chrpath socat python3-openssl
 sudo apt -y install openjdk-16-jdk openjdk-16-jre lm-sensors bison flex
 sudo apt -y install git-review cscope codequery
+
+sudo apt install $(check-language-support)
+sudo apt install network-manager-openconnect
+sudo apt install libnss3-tools
+
+
+sudo snap install --classic eclipse
+sudo snap install --classic code
+sudo snap install discord
     
     
 [OLD]
